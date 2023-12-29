@@ -44,6 +44,7 @@ const cString = (val: any, expect: Expect) => {
   if (expect.format && !cFormat(val, expect).is) return { is: false };
   if (expect.minLength && expect.minLength > val.length) return { is: false };
   if (expect.maxLength && expect.maxLength < val.length) return { is: false };
+  if (expect.choices && !expect.choices.includes(val)) return { is: false };
   return typeof val === "string"
     ? { is: true, val: String(val) }
     : { is: false };
